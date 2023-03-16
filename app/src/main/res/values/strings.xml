@@ -1,0 +1,27 @@
+<resources>
+    <string name="app_name">AndroidKotlinCalculator</string>
+    <string name="equal">=</string>
+    <string name="c">C</string>
+    <string name="point">.</string>
+    <string name="zero">0</string>
+    <string name="minus">-</string>
+    <string name="backButton"><![CDATA[<]]></string>
+    <string name="equalButton">=</string>
+    <string name="Nine">9</string>
+    <string name="Eight">8</string>
+    <string name="Seven">7</string>
+    <string name="Zero">0</string>
+    <string name="Point">.</string>
+    <string name="Delete">C</string>
+    <string name="MinusProcent">-%</string>
+    <string name="PlusProcent">+%</string>
+    <string name="DivideProcent">/%</string>
+    <string name="MultiplyProcent">*%</string>
+    <string name="One">1</string>
+    <string name="Two">2</string>
+    <string name="Three">3</string>
+    <string name="Four">4</string>
+    <string name="Five">5</string>
+    <string name="Six">6</string>
+    <string name="Story">s</string>
+</resources>
