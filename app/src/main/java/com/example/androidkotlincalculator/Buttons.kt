@@ -2,48 +2,81 @@ package com.example.androidkotlincalculator
 
 class Buttons {
     private var numberList: ArrayList<String> = ArrayList()
-    var operationList: ArrayList<String> = ArrayList()
-    private var lastOperation = ""
+    private var operationList: ArrayList<String> = ArrayList()
+    var lastOperation = ""
     var text = ""
     var num1 = 0.0
     var lastChar = '\u0000'
-    private val checkOperationButtons: CheckOperationButtons = TODO()
+    private val checkOperationButtons: CheckOperationButtons = CheckOperationButtons()
 
 
     fun buttonOperationHandler(calculatorOperation: String, checkTextView: String): Int {
-        if (checkOperationButtons.toCheckOperationButtons(checkTextView)) {
-            if (lastOperation == "") {
-                lastOperation = calculatorOperation
-                numberList.add(checkTextView)
-                operationList.add(calculatorOperation)
+        if (checkTextView != "") {
+            if (checkOperationButtons.toCheckOperationButtons(checkTextView)) {
+                if (lastOperation == "") {
+                    lastOperation = calculatorOperation
+                    numberList.add(checkTextView)
+                    operationList.add(calculatorOperation)
+                } else {
+                    if (lastOperation != "=") {
+                        val list = checkTextView.split(lastOperation).toMutableList()
+                        lastOperation = calculatorOperation
+                        operationList.add(calculatorOperation)
+                        numberList.add(list[list.size - 1])
+                    } else {
+                        operationList.add(calculatorOperation)
+                        lastOperation = calculatorOperation
+                    }
+                }
+                return 1
             } else {
-                val list = checkTextView.split(lastOperation).toTypedArray()
+                text = checkTextView.substring(0, checkTextView.length - 1) + calculatorOperation
+                if (lastOperation != "=") {
+                    lastOperation = calculatorOperation
+                    val list = text.split(lastOperation).toMutableList()
+                    if (list.contains("")) {
+                        list.remove("")
+                    }
+                    numberList.removeAt(numberList.lastIndex)
+                    operationList.removeAt(operationList.lastIndex)
+                    operationList.add(calculatorOperation)
+                    numberList.add(list[list.size - 1])
+                } else {
+                    numberList.removeAt(numberList.lastIndex)
+                    operationList.removeAt(operationList.lastIndex)
+                    operationList.add(calculatorOperation)
+                    lastOperation = calculatorOperation
+                }
                 lastOperation = calculatorOperation
-                operationList.add(calculatorOperation)
-                numberList.add(list[list.size - 1])
+                return 2
             }
-            return 1
-        } else {
-            text = checkTextView.substring(0, checkTextView.length - 1) + calculatorOperation
-            var checkTextView = text
-            lastOperation = calculatorOperation
-            return 2
+        }else return 3
+    }
+
+    fun buttonPointHandler(checkTextView: String): Int {
+        if (checkOperationButtons.toCheckOperationButtons(checkTextView)) {
+            if (checkTextView == "") return 1
+            else  {
+                if (lastOperation == "") return 2
+            }
         }
+        return 3
     }
 
 
     fun buttonEqualHandler(checkTextView: String): Boolean {
         if (checkOperationButtons.toCheckOperationButtons(checkTextView)) {
             if (lastOperation != "") {
+                var list = checkTextView.split(lastOperation).toMutableList()
+                numberList.add(list[list.size - 1])
                 num1 = numberList[0].toDouble()
                 for (i in numberList.indices) {
                     if (i > 0) {
-                        if (operationList[i] != null) {
-                            lastOperation = operationList[i - 1]
-                            Calculator.firstNumber = num1
-                            Calculator.secondNumber = numberList[i].toDouble()
-                            Calculator.chooseOperation(lastOperation)
-                        }
+                        lastOperation = operationList[i - 1]
+                        Calculator.firstNumber = num1
+                        Calculator.secondNumber = numberList[i].toDouble()
+                        Calculator.chooseOperation(lastOperation)
+                        num1 = Calculator.operation
                     }
                 }
                 lastOperation = "="
@@ -52,6 +85,7 @@ class Buttons {
                 numberList.clear()
                 operationList.clear()
                 numberList.add(num1.toString())
+                text = "$num1"
             }
             return true
         }
@@ -66,12 +100,11 @@ class Buttons {
                 )
                 text = checkTextView.substring(0, checkTextView.length - 1)
             } else if (lastChar == '+' || lastChar == '-' || lastChar == '*' || lastChar == '/' || lastChar == '.' || lastChar == '=') {
-                operationList.remove(operationList[operationList.lastIndex])
+                operationList.removeAt(operationList.lastIndex)
                 text = checkTextView.substring(0, checkTextView.length - 1)
             }
             return true
-        }
-        return false
+        } else return false
     }
     fun buttonClearAll() {
         numberList.clear()

@@ -19,21 +19,25 @@ object Calculator {
     fun toAdd(firstNumber: Double, secondNumber: Double) {
         operation = firstNumber + secondNumber
         answer = "$firstNumber + $secondNumber = $operation"
+        StorySingleton.setStoryEntry(answer)
     }
 
     fun toSubtract(firstNumber: Double, secondNumber: Double) {
         operation = firstNumber - secondNumber
         answer = "$firstNumber - $secondNumber = $operation"
+        StorySingleton.setStoryEntry(answer)
     }
 
     fun toMultiply(firstNumber: Double, secondNumber: Double) {
         operation = firstNumber * secondNumber
         answer = "$firstNumber * $secondNumber = $operation"
+        StorySingleton.setStoryEntry(answer)
     }
 
     fun toDivide(firstNumber: Double, secondNumber: Double) {
         operation = firstNumber / secondNumber
         answer = "$firstNumber / $secondNumber = $operation"
+        StorySingleton.setStoryEntry(answer)
     }
 
 }

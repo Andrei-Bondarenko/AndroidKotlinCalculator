@@ -3,7 +3,7 @@ package com.example.androidkotlincalculator
 object PercentCalculator {
     var firstPercentNumber: Double = 0.0
     var secondPercentNumber: Double = 0.0
-    var PercentOperation: Double = 0.0
+    var percentOperation: Double = 0.0
     var answer: String = ""
 
 
@@ -19,26 +19,26 @@ object PercentCalculator {
 
     fun toAdd(firstNumber: Double,secondNumber: Double) {
         secondPercentNumber = firstNumber / 100 * secondNumber
-        PercentOperation = firstPercentNumber + secondPercentNumber
-        answer = "$firstNumber + $secondNumber = $PercentOperation"
+        percentOperation = firstPercentNumber + secondPercentNumber
+        answer = "$firstNumber + $secondNumber = $percentOperation"
     }
 
     fun toSubtract(firstNumber: Double, secondNumber: Double) {
         secondPercentNumber = firstNumber / 100 * secondNumber
-        PercentOperation = firstPercentNumber - secondPercentNumber
-        answer = "$firstNumber - $secondNumber = $PercentOperation"
+        percentOperation = firstPercentNumber - secondPercentNumber
+        answer = "$firstNumber - $secondNumber = $percentOperation"
     }
 
     fun toMultiply(firstNumber: Double, secondNumber: Double) {
         secondPercentNumber = firstNumber / 100 * secondNumber
-        PercentOperation = firstPercentNumber * secondPercentNumber
-        answer = "$firstNumber * $secondNumber = $PercentOperation"
+        percentOperation = firstPercentNumber * secondPercentNumber
+        answer = "$firstNumber * $secondNumber = $percentOperation"
     }
 
     fun toDivide(firstNumber: Double, secondNumber: Double) {
         secondPercentNumber = firstNumber / 100 * secondNumber
-        PercentOperation = firstPercentNumber / secondPercentNumber
-        answer = "$firstNumber / $secondNumber = $PercentOperation"
+        percentOperation = firstPercentNumber / secondPercentNumber
+        answer = "$firstNumber / $secondNumber = $percentOperation"
     }
 
 }
